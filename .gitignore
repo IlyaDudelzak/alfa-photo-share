@@ -11,8 +11,6 @@ __pycache__/
 poetry.lock
 .DS_Store
 Thumbs.db
-.my_log.log
-.my_log
-my_log.log
+*.log
 .coverage
 .pytest_cache
