@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+psycopg2-binary
+alembic
+asyncpg
+pydantic-settings
+redis
+python-jose
+passlib
+bcrypt
+fastapi-limiter
+python-multipart
