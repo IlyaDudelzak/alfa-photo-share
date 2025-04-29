@@ -6,11 +6,6 @@ from sqlalchemy.ext.asyncio import async_engine_from_config
 from sqlalchemy import pool
 
 from alembic import context
-from logging.config import fileConfig
-from sqlalchemy.engine import Connection
-from sqlalchemy.ext.asyncio import async_engine_from_config
-from sqlalchemy import pool
-from src.database.models import Base
 
 import asyncio
 
@@ -64,9 +59,6 @@ def run_migrations_offline() -> None:
     with context.begin_transaction():
         context.run_migrations()
 
-def do_run_migrations(connection: Connection) -> None:
-    context.configure(connection=connection, target_metadata=target_metadata)
-
 def run_migrations(connection: Connection):
     context.configure(connection=connection, target_metadata=target_metadata)
     with context.begin_transaction():
@@ -96,11 +88,8 @@ def run_migrations_online() -> None:
     """
     asyncio.run(run_async_migrations())
 
- 
-def run_async_migrations():
-    asyncio.run(run_migrations_online())
 
 if context.is_offline_mode():
     run_migrations_offline()
 else:
-    run_async_migrations()
+    run_migrations_online()
