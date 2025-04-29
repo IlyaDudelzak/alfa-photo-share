@@ -1,4 +1,4 @@
-__pycache__/
+__pycache__
 *.py[cod]
 *.egg-info/
 .env*
@@ -14,3 +14,8 @@ Thumbs.db
 *.log
 .coverage
 .pytest_cache
+.venv
+.vscode
+postgres-data
+.git
+logs
