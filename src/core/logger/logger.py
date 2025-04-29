@@ -3,7 +3,6 @@ import os
 from src.core.config.base_config import app_config, INFO_LOG_FILE, ERROR_LOG_FILE, WARNING_LOG_FILE, DEBUG_LOG_FILE, LOGS_DIR
 
 
-print(f"LOGS_DIR: {LOGS_DIR}")
 
 class ErrorTypeFilter(logging.Filter):
     """
