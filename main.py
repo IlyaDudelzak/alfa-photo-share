@@ -15,6 +15,7 @@ from src.db.redis import redis_manager
 from src.repository.user import create_admin
 from src.db.database import sessionmanager
 from src.core import log
+from src.core import base_config
 
 admin_access = RoleAccessService([Role.admin])
 
@@ -84,4 +85,4 @@ app.include_router(general_check_router, prefix="/api")
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=5000, reload=True)
+    uvicorn.run("main:app", host=base_config.start_app_config.APP_HOST, port=base_config.start_app_config.APP_PORT, reload=True)
