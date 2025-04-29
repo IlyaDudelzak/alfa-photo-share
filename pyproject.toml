@@ -2,7 +2,7 @@
 name = "alfa-photo-share"
 version = "0.1.0"
 description = ""
-authors = ["alfa team alfa-team@alfa.com>"]
+authors = ["alfa team <alfa-team@alfa.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
