@@ -6,6 +6,13 @@ from sqlalchemy.ext.asyncio import async_engine_from_config
 from sqlalchemy import pool
 
 from alembic import context
+from logging.config import fileConfig
+from sqlalchemy.engine import Connection
+from sqlalchemy.ext.asyncio import async_engine_from_config
+from sqlalchemy import pool
+from src.database.models import Base
+
+import asyncio
 
 from src.db.base import Base
 from src.core import log
@@ -34,7 +41,6 @@ config.set_main_option("sqlalchemy.url", db_config.DATABASE_URL)
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
 
-
 def run_migrations_offline() -> None:
     """Run migrations in 'offline' mode.
 
@@ -58,6 +64,8 @@ def run_migrations_offline() -> None:
     with context.begin_transaction():
         context.run_migrations()
 
+def do_run_migrations(connection: Connection) -> None:
+    context.configure(connection=connection, target_metadata=target_metadata)
 
 def run_migrations(connection: Connection):
     context.configure(connection=connection, target_metadata=target_metadata)
@@ -79,6 +87,7 @@ async def run_async_migrations():
 
 
 def run_migrations_online() -> None:
+
     """Run migrations in 'online' mode.
 
     In this scenario we need to create an Engine
@@ -87,9 +96,11 @@ def run_migrations_online() -> None:
     """
     asyncio.run(run_async_migrations())
 
-
+ 
+def run_async_migrations():
+    asyncio.run(run_migrations_online())
 
 if context.is_offline_mode():
     run_migrations_offline()
 else:
-    run_migrations_online()
+    run_async_migrations()
